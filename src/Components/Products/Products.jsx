@@ -4,7 +4,7 @@
 // import Typography from '@mui/material/Typography';
 // import CardActions from '@mui/material/CardActions';
 // import Grid from '@mui/material/Grid';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -16,14 +16,18 @@ import Typography from '@mui/material/Typography';
 function Products() {
   let products = useSelector(currentState => currentState.productReducer.products);
   let category = useSelector(currentState => currentState.categoryReducer.activeCategory);
-
-  console.log(category);
+  const dispatch = useDispatch();
+  const addToCart = (product) => {
+    dispatch({
+      type: 'ADD_CART',
+      payload: product
+    });
+  }
   return (
     <>
-      <p>list of products</p>
-      {products.filter(product =>
-        product.category === category).map((product, idx) =>
-          <Card sx={{ maxWidth: 345 }}>
+      {products.filter((product) =>
+        product.category === category && product.inStock > 0).map((product, idx) =>
+          <Card sx={{ maxWidth: 345 }} id={idx}>
             <CardMedia
               component="img"
               alt={product.name}
@@ -40,9 +44,12 @@ function Products() {
               <Typography variant="h6" color="text.secondary">
               ${product.price}
               </Typography>
+              <Typography variant="body3" color="text.secondary">
+              In Stock: {product.inStock}
+              </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">Add to Cart</Button>
+              <Button size="small" onClick={()=> addToCart(product.name)}>Add to Cart</Button>
               <Button size="small">Learn More</Button>
             </CardActions>
           </Card>
