@@ -1,9 +1,21 @@
 import { useSelector, useDispatch } from 'react-redux';
+import Divider from '@mui/material/Divider';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 function Categories() {
   const categories = useSelector(currentState => currentState.categoryReducer.categories)
   const dispatch = useDispatch();
-  console.log('5sd',categories);
+  // console.log('5sd', categories);
   const handleClick = (category) => {
     dispatch({
       type: 'FILTER_CATEGORY',
@@ -14,9 +26,16 @@ function Categories() {
   return (
     <>
       <h2>List of categories</h2>
-      <ul>
+      <Stack
+        direction="row"
+        divider={<Divider orientation="vertical" flexItem />}
+        spacing={2}
+        >
+        {categories.map((category) => <Item onClick={() => handleClick(category)} >{category}</Item>)}
+      </Stack>
+      {/* <ul>
         {categories.map((category) => <li onClick={() => handleClick(category)} >{category}</li>)}
-      </ul>
+      </ul> */}
     </>
   );
 }
