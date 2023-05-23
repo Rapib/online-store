@@ -1,6 +1,11 @@
 # Online Store
 
 ## UML
+
+### with cart
+![store2](store2.jpg)
+
+### Store without cart
 ![store](store.jpg)
 
 ## Link
