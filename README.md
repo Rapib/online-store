@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Online Store
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## UML
+![store](store.jpg)
 
-## Available Scripts
+## Link
+<https://onstores.netlify.app/>
 
-In the project directory, you can run:
 
-### `npm start`
+**Virtual Store Phase 1:** For this assignment, you will be starting the process of creating an e-Commerce storefront using React with Redux, coupled with your live API server.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Phase 1 Requirements
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Today, we begin the first of a 4-Phase build of the **storefront application**, written in React. In this first phase, our goal is to setup the basic scaffolding of the application with initial styling and basic behaviors. This initial build sets up the file structure and state management so that we can progressively build this application in a scalable manner.
 
-### `npm test`
+The following user/developer stories detail the major functionality for this phase of the project.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- As a user, I expect to see a list of available product categories in the store so that I can easily browse products.
+- As a user, I want to choose a category and see a list of all available products matching that category.
+- As a user, I want a clean, easy to use user interface so that I can shop the online store with confidence.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technical Requirements / Notes
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+And as developers, here are the high level development tasks that address the above end user requirements.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Create a visually appealing site using [Material UI](https://material-ui.com/).
+- Use a Redux Store to manage the state of categories and items in the store.
+- Display a list of categories from state.
+- When the user selects (clicks on) a category:
+  - Identify that category as selected (change of class/display).
+  - Show a list of products associated with the category.
 
-### `npm run eject`
+### Application Architecture
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Create the Virtual Store application as follows:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Begin with creating your application using `create-react-app`.
+- Install Material UI as a dependency.
+- Write an `<App />` component that serves as the container for all sub-components of this application.
+  - A `<Header />` component which shows the name of your virtual store.
+  - A `<Footer />` component which shows your copyright and contact information.
+  - A `<Categories />` component:
+    - Shows a list of all categories.
+    - Dispatches an action when one is clicked to "activate" it.
+  - A `<Products />` component:
+    - Displays a list of products associated with the selected category.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Notes on constructing the Redux Store:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Categories
+  - State should contain a list of categories as well as the active category.
+    - Each category should have a normalized name, display name, and a description.
+  - Create an action that will trigger the reducer to change the active category.
+  - Update the active category in the reducer when this action is dispatched.
+- Products
+  - State should be a list of all products.
+    - Each product should have a category association, name, description, price, inventory count.
+  - Create an action that will trigger when the active category is changed.
+    - HINT: Multiple reducers can respond to the same actions.
+  - Create a reducer that will filter the products list based on the active category.
+- Active Category
+  - State should store active category.
+    - Other components (products, etc) might need to reference this.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
