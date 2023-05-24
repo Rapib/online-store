@@ -2,6 +2,9 @@
 
 ## UML
 
+### API
+![store3](store3.jpg)
+
 ### with cart
 ![store2](store2.jpg)
 
