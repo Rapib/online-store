@@ -29,14 +29,15 @@ export const addCartToApi = async (action) => {
 }
 
 export const removeCartToApi = async (action) => {
-  console.log(action.payload);
-  // let response = await fetch(`https://api-js401.herokuapp.com/api/v1/products/${action.payload._id}`, {
-  //       method: 'PUT',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({...action.payload, inStock: action.payload.inStock + 1})
-  //   })
-  //   let data = await response.json();
-  // return data;
+  console.log('32removeapi',action.payload);
+  let response = await fetch(`https://api-js401.herokuapp.com/api/v1/products/${action.payload._id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({...action.payload, inStock: action.payload.inStock + 1})
+    })
+    let data = await response.json();
+    
+  return data;
 }
 
 function productReducer(state = initialState, action) {
@@ -53,10 +54,10 @@ function productReducer(state = initialState, action) {
         })
       };
     case 'REMOVE_CART':
-      let removeData = removeCartToApi(action);
+      removeCartToApi(action);
       return {
         products: state.products.map(product => {
-          if (product.name === action.payload) { product.inStock = removeData.inStock; }
+          if (product.name === action.payload.name) { product.inStock += 1 }
           return product;
         })
       };
