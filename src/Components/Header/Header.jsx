@@ -22,6 +22,7 @@ function Header() {
     setAnchorEl(null);
   };
   const removeFromCart = (item) => {
+    console.log('25item', item);
     dispatch({
       type: 'REMOVE_CART',
       payload: item
@@ -57,8 +58,7 @@ function Header() {
       >
         {cart.map((item,idx) =>
           <div>
-
-            <MenuItem onClick={handleClose} id={idx}>{item}
+            <MenuItem onClick={handleClose} id={idx}>{item.name}
             </MenuItem>
             <Button variant="outlined" color="error" onClick={() => removeFromCart(item)}>REMOVE</Button>
           </div>
