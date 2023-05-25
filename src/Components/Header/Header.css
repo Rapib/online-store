@@ -4,3 +4,14 @@
   color: white;
 }
 
+/* .navLink {
+  background-color: aliceblue;
+  text-decoration: none;
+  color: white;
+
+} */
+
+a {
+  text-decoration: none;
+  color: white;
+}

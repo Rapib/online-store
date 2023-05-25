@@ -4,10 +4,12 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import './Header.css';
 import { useSelector, useDispatch } from 'react-redux';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { Link } from 'react-router-dom';
+import './Header.css';
+
 
 function Header() {
   let cart = useSelector(currentState => currentState.cartReducer.cart);
@@ -34,6 +36,8 @@ function Header() {
       <Box sx={{ flexGrow: 1 }} >
         <AppBar position="fixed">
           <Toolbar>
+          <span className='navLink'><Link to="/">Home</Link></span>
+          {/* <Button color="inherit" onClick={handleClick}>Home</Button> */}
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Rapib's Online Store
             </Typography>
