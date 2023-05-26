@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import {fetchProducts, addCartToApi} from '../../store/products';
+import { useEffect } from 'react';
+import {fetchProducts} from '../../store/products';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -13,20 +13,14 @@ function Products() {
   let products = useSelector(currentState => currentState.productReducer.products);
   let category = useSelector(currentState => currentState.categoryReducer.activeCategory);
   const dispatch = useDispatch();
-  const [cartAction, setcartAction] = useState(0);
 
   useEffect(() => {
     dispatch(fetchProducts());
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
-  // useEffect(() => {
-  //   dispatch(() => addCartToApi(cartAction));
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // },[cartAction]);
 
   const addToCart = (product) => {
-    setcartAction(product);
     dispatch({
       type: 'ADD_CART',
       payload: product

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import createStore from './store/store';
 import Header from './Components/Header/Header';
 import Categories from './Components/Categories/Categories';
-import ShoppingCart from './Components/ShoppingCart /ShoppingCart ';
+import ShoppingCart from './Components/ShoppingCart /ShoppingCart';
 import Products from './Components/Products/Products';
 import Footer from './Components/Footer/Footer';
 import { Routes, Route } from 'react-router-dom';

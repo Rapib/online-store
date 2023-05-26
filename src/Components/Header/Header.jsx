@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
@@ -24,7 +26,6 @@ function Header() {
     setAnchorEl(null);
   };
   const removeFromCart = (item) => {
-    console.log('25item', item);
     dispatch({
       type: 'REMOVE_CART',
       payload: item
@@ -34,10 +35,10 @@ function Header() {
   return (
     <>
       <Box sx={{ flexGrow: 1 }} >
-        <AppBar position="fixed">
+        <AppBar position="fixed" sx={{ bgcolor: "#7bc96d" }}>
           <Toolbar>
-          <span className='navLink'><Link to="/">Home</Link></span>
-          {/* <Button color="inherit" onClick={handleClick}>Home</Button> */}
+            <span className='navLink'><Link to="/" style={{ textDecoration: 'none', color: 'white' }}>Home</Link></span>
+            {/* <Button color="inherit" onClick={handleClick}>Home</Button> */}
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Rapib's Online Store
             </Typography>
@@ -46,6 +47,7 @@ function Header() {
         </AppBar>
       </Box>
       <Menu
+
         id="demo-positioned-menu"
         aria-labelledby="demo-positioned-button"
         anchorEl={anchorEl}
@@ -60,14 +62,27 @@ function Header() {
           horizontal: 'left',
         }}
       >
-        {cart.map((item,idx) =>
+        {cart.length === 0 && <MenuItem><ListItemText>Your cart is empty.</ListItemText></MenuItem>}
+        {cart.map((item, idx) =>
           <div>
-            <MenuItem onClick={handleClose} id={idx}>{item.name}
+            <MenuItem sx={{ width: 320, maxWidth: '100%' }} onClick={handleClose} id={idx} >{idx + 1} . {item.name}     (${item.price})
+              <ListItemText></ListItemText>
+              <Button variant="outlined" color="error" size="small" onClick={() => removeFromCart(item)}>REMOVE</Button>
             </MenuItem>
-            <Button variant="outlined" color="error" onClick={() => removeFromCart(item)}>REMOVE</Button>
           </div>
         )
         }
+        {cart.length !== 0 &&
+          <>
+            <Divider />
+            <MenuItem onClick={handleClose}>
+              <ListItemText >
+                <Link to="/cart" style={{ textDecoration: 'none', color: 'blue' }}>Checkout (Total: ${cart.reduce((accumulator, object) => {
+                  return accumulator + object.price;
+                }, 0)})</Link>
+              </ListItemText>
+            </MenuItem>
+          </>}
       </Menu>
     </>
   );
