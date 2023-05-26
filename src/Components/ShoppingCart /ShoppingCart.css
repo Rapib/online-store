@@ -1,8 +1,9 @@
-.total {
+.total, .cartForm {
   width: 600px;
   margin: 100px auto;
 }
-.cartForm {
-  width: 600px;
-  margin: 100px auto;
+
+.submit {
+  align-items: center;
+  margin: 20px auto;
 }

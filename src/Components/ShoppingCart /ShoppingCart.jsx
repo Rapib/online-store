@@ -37,7 +37,6 @@ function ShoppingCart() {
   return (
     <>
       <div className='total'>
-
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 500 }} aria-label="spanning table">
             <TableHead>
@@ -53,12 +52,12 @@ function ShoppingCart() {
               {cart.map((item) => (
                 <TableRow key={item.name}>
                   <TableCell colSpan={3}>{item.name}</TableCell>
-                  <TableCell align="right">{ccyFormat(item.price)}</TableCell>
+                  <TableCell align="right">${ccyFormat(item.price)}</TableCell>
                 </TableRow>
               ))}
               <TableRow>
                 <TableCell colSpan={3} align="center">Total</TableCell>
-                <TableCell align="right">{cart.reduce((accumulator, object) => {
+                <TableCell align="right">${cart.reduce((accumulator, object) => {
                   return accumulator + object.price;
                 }, 0)}</TableCell>
               </TableRow>
@@ -69,6 +68,7 @@ function ShoppingCart() {
       <div className='cartForm'>
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
           <div >
+            <h3>Shipping address:</h3>
             <TextField
               label="First Name"
               id="outlined-start-adornment"
@@ -100,10 +100,23 @@ function ShoppingCart() {
               label="Zip Code"
               id="outlined-start-adornment"
               sx={{ m: 1, width: '15ch' }}
-
             />
-          </div>
-          <div>
+            <FormControl fullWidth sx={{ m: 1 }}>
+              <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-email"
+                label="email"
+              />
+            </FormControl>
+            <FormControl fullWidth sx={{ m: 1 }}>
+              <InputLabel htmlFor="outlined-adornment-phone Number">Phone Number</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-phoneNumber"
+                label="phoneNumber"
+              />
+            </FormControl>
+            <p></p>
+            <h3>Payment information:</h3>
             <FormControl fullWidth sx={{ m: 1 }} variant="standard">
               <InputLabel htmlFor="standard-adornment-password">Credit Card Number</InputLabel>
               <Input
@@ -135,9 +148,11 @@ function ShoppingCart() {
               />
             </FormControl>
           </div>
-          <Button variant="contained" color="success" onClick={() => setOrderSubmit(true)}>
-            Submit Order
-          </Button>
+          <span className='submit'>
+            <Button variant="contained" color="success" onClick={() => setOrderSubmit(true)}>
+              Submit Order
+            </Button>
+          </span>
         </Box>
         {orderSubmit && <Alert>The order has been submitted!</Alert>}
       </div>

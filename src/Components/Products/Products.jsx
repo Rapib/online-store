@@ -31,19 +31,19 @@ function Products() {
     <>
       {(category === 'show all' || category === null) ? products.filter((product) =>
         product.inStock > 0).map((product, idx) =>
-          <Card sx={{ maxWidth: 250 }} id={idx}>
+          <Card sx={{ maxWidth: 350 }} id={idx}>
             <CardMedia
               component="img"
               alt={product.name}
-              height="200"
-              image={`https://picsum.photos/${Math.floor(Math.random() * 200)}/200`}
+              height="250"
+              image={`https://picsum.photos/${Math.floor(Math.random() * 200)}/350`}
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {product.name}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Product description
+                Product description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quidem.
               </Typography>
               <Typography variant="h6" color="text.secondary">
                 ${product.price}
@@ -54,24 +54,23 @@ function Products() {
             </CardContent>
             <CardActions>
               <Button size="small" onClick={() => addToCart(product)}>Add to Cart</Button>
-              <Button size="small">Learn More</Button>
             </CardActions>
           </Card>
         ) : products.filter((product) =>
           product.category === category && product.inStock > 0).map((product, idx) =>
-            <Card sx={{ maxWidth: 250 }} id={idx}>
+            <Card sx={{ maxWidth: 350 }} id={idx}>
               <CardMedia
                 component="img"
                 alt={product.name}
-                height="200"
-                image={`https://picsum.photos/${Math.floor(Math.random() * 200)}/200`}
+                height="250"
+                image={`https://picsum.photos/${Math.floor(Math.random() * 200)}/350`}
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {product.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Product description
+                Product description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quidem.
                 </Typography>
                 <Typography variant="h6" color="text.secondary">
                   ${product.price}
@@ -82,7 +81,6 @@ function Products() {
               </CardContent>
               <CardActions>
                 <Button size="small" onClick={() => addToCart(product)}>Add to Cart</Button>
-                <Button size="small">Learn More</Button>
               </CardActions>
             </Card>
           )}
