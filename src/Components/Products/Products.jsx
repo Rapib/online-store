@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import {fetchProducts, addCartToApi} from '../../store/products';
+import { useEffect } from 'react';
+import {fetchProducts} from '../../store/products';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -13,20 +13,14 @@ function Products() {
   let products = useSelector(currentState => currentState.productReducer.products);
   let category = useSelector(currentState => currentState.categoryReducer.activeCategory);
   const dispatch = useDispatch();
-  const [cartAction, setcartAction] = useState(0);
 
   useEffect(() => {
     dispatch(fetchProducts());
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
-  // useEffect(() => {
-  //   dispatch(() => addCartToApi(cartAction));
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // },[cartAction]);
 
   const addToCart = (product) => {
-    setcartAction(product);
     dispatch({
       type: 'ADD_CART',
       payload: product
@@ -37,19 +31,19 @@ function Products() {
     <>
       {(category === 'show all' || category === null) ? products.filter((product) =>
         product.inStock > 0).map((product, idx) =>
-          <Card sx={{ maxWidth: 250 }} id={idx}>
+          <Card sx={{ maxWidth: 350 }} id={idx}>
             <CardMedia
               component="img"
               alt={product.name}
-              height="200"
-              image={`https://picsum.photos/${Math.floor(Math.random() * 200)}/200`}
+              height="250"
+              image={`https://picsum.photos/${Math.floor(Math.random() * 200)}/350`}
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {product.name}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Product description
+                Product description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quidem.
               </Typography>
               <Typography variant="h6" color="text.secondary">
                 ${product.price}
@@ -60,24 +54,23 @@ function Products() {
             </CardContent>
             <CardActions>
               <Button size="small" onClick={() => addToCart(product)}>Add to Cart</Button>
-              <Button size="small">Learn More</Button>
             </CardActions>
           </Card>
         ) : products.filter((product) =>
           product.category === category && product.inStock > 0).map((product, idx) =>
-            <Card sx={{ maxWidth: 250 }} id={idx}>
+            <Card sx={{ maxWidth: 350 }} id={idx}>
               <CardMedia
                 component="img"
                 alt={product.name}
-                height="200"
-                image={`https://picsum.photos/${Math.floor(Math.random() * 200)}/200`}
+                height="250"
+                image={`https://picsum.photos/${Math.floor(Math.random() * 200)}/350`}
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {product.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Product description
+                Product description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quidem.
                 </Typography>
                 <Typography variant="h6" color="text.secondary">
                   ${product.price}
@@ -88,7 +81,6 @@ function Products() {
               </CardContent>
               <CardActions>
                 <Button size="small" onClick={() => addToCart(product)}>Add to Cart</Button>
-                <Button size="small">Learn More</Button>
               </CardActions>
             </Card>
           )}

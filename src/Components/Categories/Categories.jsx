@@ -22,8 +22,8 @@ function Categories() {
 
   return (
     <>
-      <Nav fill variant="tabs">
-        {categories.map((category, idx) => <Nav.Item id={idx}><Nav.Link onClick={() => handleClick(category)} >{category}</Nav.Link></Nav.Item>)}
+      <Nav fill variant="tabs" >
+        {categories.map((category, idx) => <Nav.Item id={idx} ><Nav.Link onClick={() => handleClick(category)} >{category}</Nav.Link></Nav.Item>)}
       </Nav>
     </>
   );
