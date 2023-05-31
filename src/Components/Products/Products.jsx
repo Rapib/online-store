@@ -36,7 +36,7 @@ function Products() {
               component="img"
               alt={product.name}
               height="250"
-              image={`https://picsum.photos/${Math.floor(Math.random() * 200)}/350`}
+              image={`https://picsum.photos/seed/${idx*2}/350`}
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
@@ -63,7 +63,7 @@ function Products() {
                 component="img"
                 alt={product.name}
                 height="250"
-                image={`https://picsum.photos/${Math.floor(Math.random() * 200)}/350`}
+                image={`https://picsum.photos/seed/${idx*2}/350`}
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
