@@ -12,6 +12,15 @@ A professional online store with intuitive features, allowing users to convenien
 
 ## Screenshots
 
+### Products
+![home](https://github.com/Rapib/online-store/assets/120158188/a13d6318-0541-4891-8441-132daac409dd)
+
+### Cart
+![cart](https://github.com/Rapib/online-store/assets/120158188/e47c9723-77c7-4134-8d12-210b41feb080)
+
+### Checkout
+![checkout](https://github.com/Rapib/online-store/assets/120158188/d94aed55-c334-47e9-8a88-7cedf93f606c)
+
 
 ## User stories
 
